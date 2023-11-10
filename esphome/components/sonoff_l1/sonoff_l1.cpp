@@ -52,7 +52,7 @@ void SonoffL1::loop() {
   char r[128];
   strncpy(r, buffer, read);
   r[read] = 0;
-  Serial.printf("Read %d bytes: %s\r\n", read, r);
+  Serial.printf("\r\nRead %d bytes: %s\r\n", read, r);
   // ESP_LOGD(TAG, "Read %d bytes: %s", read, r);
 }
 
