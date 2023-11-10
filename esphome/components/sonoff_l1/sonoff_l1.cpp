@@ -8,12 +8,11 @@ namespace sonoff_l1 {
 static const char *const TAG = "components.l1";
 
 void SonoffL1::write_state(light::LightState *state) {
-  strncpy(wbuff,
-          "AT+UPDATE=\"sequence\":\"1\",\"switch\":\"on\",\"light_type\":1,\"colorR\":255,\"colorG\":20,\"colorB\":100,"
-          "\"bright\":100,\"mode\":1",
-          1024);
+  strcpy(wbuff,
+         "AT+UPDATE=\"sequence\":\"1\",\"switch\":\"on\",\"light_type\":1,\"colorR\":255,\"colorG\":20,\"colorB\":100,"
+         "\"bright\":100,\"mode\":1");
 
-  Serial.printf("%s", wbuff);
+  Serial.print(wbuff);
   Serial.write(0x1b);
   Serial.flush();
   ESP_LOGD(TAG, "Wrote %s", wbuff);
