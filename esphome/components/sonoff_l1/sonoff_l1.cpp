@@ -46,7 +46,13 @@ void SonoffL1::write_state(light::LightState *state) {
 
 void SonoffL1::setup() { Serial.begin(19200); }
 
-void SonoffL1::loop() {}
+void SonoffL1::loop() {
+  char buffer[128];
+  int read = Serial.readBytes(buffer, 128);
+  char r[128];
+  strncpy(r, buffer, read);
+  ESP_LOGD(TAG, "Read %d bytes: %s", read, r);
+}
 
 void SonoffL1::dump_config() {}
 
