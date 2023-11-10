@@ -9,8 +9,8 @@ static const char *const TAG = "components.l1";
 
 void SonoffL1::write_state(light::LightState *state) {
   strncpy(wbuff,
-          "AT+UPDATE=\"sequence\":588226226,\"switch\":on,\"light_type\":1,\"colorR\":255,\"colorG\":"
-          "20,\"colorB\":100,\"bright\":100,\"mode\":1",
+          "AT+UPDATE=\"sequence\":\"1\",\"switch\":\"on\",\"light_type\":1,\"colorR\":255,\"colorG\":20,\"colorB\":100,"
+          "\"bright\":100,\"mode\":1",
           1024);
 
   Serial.printf("%s", wbuff);
