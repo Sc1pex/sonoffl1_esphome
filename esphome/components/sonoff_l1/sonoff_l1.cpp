@@ -8,16 +8,18 @@ namespace sonoff_l1 {
 static const char *const TAG = "components.l1";
 
 void SonoffL1::write_state(light::LightState *state) {
-  String print = "AT+UPDATE=\"sequence\":588226226,\"switch\":on,\"light_type\":1,\"colorR\":255\"colorG\":"
-                 "20\"colorB\":100,\"bright\":100,\"mode\":1";
+  strncpy(wbuff,
+          "AT+UPDATE=\"sequence\":588226226,\"switch\":on,\"light_type\":1,\"colorR\":255\"colorG\":"
+          "20\"colorB\":100,\"bright\":100,\"mode\":1",
+          1024);
 
-  Serial.printf("%s", print.c_str());
+  Serial.printf("%s", wbuff);
   Serial.write(0x1b);
   Serial.flush();
-  ESP_LOGD(TAG, "Wrote %s", print);
+  ESP_LOGD(TAG, "Wrote %s", wbuff);
 
-  String recv = Serial.readStringUntil(0x1b);
-  ESP_LOGD(TAG, "Recv: %s", recv);
+  Serial.readBytesUntil(0x1b, rbuff, 1024);
+  ESP_LOGD(TAG, "Recv: %s", rbuff);
 }
 
 void SonoffL1::setup() { Serial.begin(19200); }

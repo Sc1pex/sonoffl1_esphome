@@ -24,7 +24,8 @@ class SonoffL1 : public light::LightOutput, public Component {
 
  protected:
   light::LightState *light_state{nullptr};
-  String recv;
+  char rbuff[1024];
+  char wbuff[1024];
 };
 
 }  // namespace sonoff_l1
