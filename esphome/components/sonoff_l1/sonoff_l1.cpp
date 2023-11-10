@@ -11,7 +11,7 @@ void SonoffL1::write_state(light::LightState *state) {
   String print = "AT+UPDATE=\"sequence\":588226226,\"switch\":on,\"light_type\":1,\"colorR\":255\"colorG\":"
                  "20\"colorB\":100,\"bright\":100,\"mode\":1";
 
-  Serial.printf("%s", print);
+  Serial.printf("%s", print.c_str());
   Serial.write(0x1b);
   Serial.flush();
   ESP_LOGD(TAG, "Wrote %s", print);
