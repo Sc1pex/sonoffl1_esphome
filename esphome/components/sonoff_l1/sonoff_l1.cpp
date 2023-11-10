@@ -41,7 +41,7 @@ void SonoffL1::write_state(light::LightState *state) {
   Serial.print(buffer);
   Serial.write(0x1B);
   Serial.flush();
-  ESP_LOGD(TAG, "Wrote: %s", buffer);
+  // ESP_LOGD(TAG, "Wrote: %s", buffer);
 }
 
 void SonoffL1::setup() { Serial.begin(19200); }
@@ -51,7 +51,9 @@ void SonoffL1::loop() {
   int read = Serial.readBytes(buffer, 128);
   char r[128];
   strncpy(r, buffer, read);
-  ESP_LOGD(TAG, "Read %d bytes: %s", read, r);
+  r[read] = 0;
+  Serial.printf("Read %d bytes: %s\r\n", read, r);
+  // ESP_LOGD(TAG, "Read %d bytes: %s", read, r);
 }
 
 void SonoffL1::dump_config() {}
