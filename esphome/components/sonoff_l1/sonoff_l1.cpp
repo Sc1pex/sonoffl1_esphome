@@ -30,9 +30,9 @@ void SonoffL1::write_state(light::LightState *state) {
 
   char buffer[140];
   snprintf_P(buffer, sizeof(buffer),
-             PSTR("AT+UPDATE=\"sequence\":\"%d%03d\",\"switch\":\"%s\",\"light_type\":1,\"colorR\":%d,\"colorG\":%d,"
+             PSTR("AT+UPDATE=\"sequence\":\"123123\",\"switch\":\"%s\",\"light_type\":1,\"colorR\":%d,\"colorG\":%d,"
                   "\"colorB\":%d,\"bright\":%d,\"mode\":%d"),
-             millis(), millis() % 1000, ledState ? "on" : "off", redValue, greenValue, blueValue, brightness, 1);
+             ledState ? "on" : "off", redValue, greenValue, blueValue, brightness, 1);
 
   Serial.print(buffer);
   Serial.write(0x1B);
